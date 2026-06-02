@@ -1,0 +1,674 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>EduPlay - Learn By Playing</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+<script src="https://checkout.razorpay.com/v1/checkout.js"></script>
+</head>
+<body>
+
+    <!-- ==================== PRELOADER ==================== -->
+    <div id="preloader">
+        <div class="loader">
+            <div class="loader-icon">🎮</div>
+            <h2>EduPlay</h2>
+            <div class="loading-bar"><div class="loading-progress"></div></div>
+            <p>Loading your learning adventure...</p>
+        </div>
+    </div>
+
+    <!-- ==================== NAVBAR ==================== -->
+    <nav id="navbar">
+        <div class="nav-container">
+            <div class="logo" onclick="showPage('landing')">
+                <span class="logo-icon">🎮</span>
+                <span class="logo-text">Edu<span class="highlight">Play</span></span>
+            </div>
+            <ul class="nav-links" id="navLinks">
+                <li><a href="#" onclick="showPage('landing')">Home</a></li>
+                <li><a href="#" onclick="showPage('courses')">Courses</a></li>
+                <li><a href="#" onclick="showPage('games')">Games</a></li>
+                <li><a href="#" onclick="showPage('leaderboard')">Leaderboard</a></li>
+                <li id="profileNavItem" style="display:none;">
+                    <a href="#" onclick="showPage('dashboard')">Dashboard</a>
+                </li>
+            </ul>
+            <div class="nav-actions">
+                <div id="navAuthButtons">
+                    <button class="btn btn-outline" onclick="showPage('login')">Login</button>
+                    <button class="btn btn-primary" onclick="showPage('register')">Sign Up - ₹99</button>
+                </div>
+                <div id="navUserInfo" style="display:none;">
+                    <div class="user-badge" onclick="showPage('dashboard')">
+                        <div class="user-avatar" id="navAvatar">U</div>
+                        <span id="navUsername">User</span>
+                        <span class="coins-badge">🪙 <span id="navCoins">0</span></span>
+                    </div>
+                    <button class="btn btn-sm btn-outline" onclick="logout()">Logout</button>
+                </div>
+            </div>
+            <div class="hamburger" onclick="toggleMobileMenu()">
+                <span></span><span></span><span></span>
+            </div>
+        </div>
+    </nav>
+
+    <!-- ==================== LANDING PAGE ==================== -->
+    <div id="page-landing" class="page active">
+        <!-- Hero Section -->
+        <section class="hero">
+            <div class="hero-particles" id="particles"></div>
+            <div class="hero-content">
+                <div class="hero-badge">🏆 #1 Learning Platform</div>
+                <h1>Learn <span class="typing-text" id="typingText"></span><span class="cursor">|</span></h1>
+                <h1>By <span class="highlight">Playing Games</span></h1>
+                <p class="hero-subtitle">Master Coding, Accounting, Math, Science, English & more through interactive mini-games. Start your journey for just <strong>₹99 for 15 days!</strong></p>
+                <div class="hero-buttons">
+                    <button class="btn btn-primary btn-lg" onclick="showPage('register')">
+                        <i class="fas fa-rocket"></i> Start Learning - ₹99
+                    </button>
+                    <button class="btn btn-outline btn-lg" onclick="showPage('courses')">
+                        <i class="fas fa-play"></i> Explore Courses
+                    </button>
+                </div>
+                <div class="hero-stats">
+                    <div class="stat-item">
+                        <span class="stat-number" data-count="50000">0</span>+
+                        <span class="stat-label">Students</span>
+                    </div>
+                    <div class="stat-item">
+                        <span class="stat-number" data-count="200">0</span>+
+                        <span class="stat-label">Games</span>
+                    </div>
+                    <div class="stat-item">
+                        <span class="stat-number" data-count="15">0</span>+
+                        <span class="stat-label">Courses</span>
+                    </div>
+                    <div class="stat-item">
+                        <span class="stat-number" data-count="98">0</span>%
+                        <span class="stat-label">Success Rate</span>
+                    </div>
+                </div>
+            </div>
+            <div class="hero-illustration">
+                <div class="floating-cards">
+                    <div class="float-card card-1">💻 Coding</div>
+                    <div class="float-card card-2">📊 Accounting</div>
+                    <div class="float-card card-3">🔬 Science</div>
+                    <div class="float-card card-4">📐 Math</div>
+                    <div class="float-card card-5">📝 English</div>
+                    <div class="float-card card-6">🎨 Design</div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Features Section -->
+        <section class="features">
+            <div class="container">
+                <div class="section-header">
+                    <span class="section-badge">Why EduPlay?</span>
+                    <h2>Learn Smarter, Not Harder</h2>
+                    <p>Our gamified approach makes learning fun and effective</p>
+                </div>
+                <div class="features-grid">
+                    <div class="feature-card">
+                        <div class="feature-icon">🎮</div>
+                        <h3>Interactive Games</h3>
+                        <p>Learn complex concepts through fun mini-games designed by education experts</p>
+                    </div>
+                    <div class="feature-card">
+                        <div class="feature-icon">🏆</div>
+                        <h3>Earn Rewards</h3>
+                        <p>Collect coins, badges, and climb the leaderboard as you progress</p>
+                    </div>
+                    <div class="feature-card">
+                        <div class="feature-icon">📊</div>
+                        <h3>Track Progress</h3>
+                        <p>Detailed analytics to monitor your learning journey</p>
+                    </div>
+                    <div class="feature-card">
+                        <div class="feature-icon">🎯</div>
+                        <h3>Adaptive Learning</h3>
+                        <p>Games adjust difficulty based on your skill level</p>
+                    </div>
+                    <div class="feature-card">
+                        <div class="feature-icon">📱</div>
+                        <h3>Learn Anywhere</h3>
+                        <p>Access on any device - desktop, tablet, or mobile</p>
+                    </div>
+                    <div class="feature-card">
+                        <div class="feature-icon">💡</div>
+                        <h3>Instant Feedback</h3>
+                        <p>Get immediate explanations for every answer</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Pricing Section -->
+        <section class="pricing">
+            <div class="container">
+                <div class="section-header">
+                    <span class="section-badge">Simple Pricing</span>
+                    <h2>Start Your Learning Journey</h2>
+                    <p>Affordable access to all courses and games</p>
+                </div>
+                <div class="pricing-cards">
+                    <div class="pricing-card">
+                        <div class="pricing-header">
+                            <h3>Free Trial</h3>
+                            <div class="price">₹0</div>
+                            <p>3 days access</p>
+                        </div>
+                        <ul class="pricing-features">
+                            <li><i class="fas fa-check"></i> 2 Course Access</li>
+                            <li><i class="fas fa-check"></i> 5 Games</li>
+                            <li><i class="fas fa-check"></i> Basic Progress Tracking</li>
+                            <li class="disabled"><i class="fas fa-times"></i> No Certificates</li>
+                            <li class="disabled"><i class="fas fa-times"></i> No Leaderboard</li>
+                        </ul>
+                        <button class="btn btn-outline btn-block" onclick="showPage('register')">Try Free</button>
+                    </div>
+                    <div class="pricing-card featured">
+                        <div class="pricing-badge">Most Popular</div>
+                        <div class="pricing-header">
+                            <h3>Standard Plan</h3>
+                            <div class="price">₹99</div>
+                            <p>15 days access</p>
+                        </div>
+                        <ul class="pricing-features">
+                            <li><i class="fas fa-check"></i> All Courses Access</li>
+                            <li><i class="fas fa-check"></i> 200+ Games</li>
+                            <li><i class="fas fa-check"></i> Full Progress Tracking</li>
+                            <li><i class="fas fa-check"></i> Certificates</li>
+                            <li><i class="fas fa-check"></i> Leaderboard Access</li>
+                        </ul>
+                        <button class="btn btn-primary btn-block" onclick="showPage('register')">Get Started</button>
+                    </div>
+                    <div class="pricing-card">
+                        <div class="pricing-header">
+                            <h3>Premium Plan</h3>
+                            <div class="price">₹249</div>
+                            <p>45 days access</p>
+                        </div>
+                        <ul class="pricing-features">
+                            <li><i class="fas fa-check"></i> Everything in Standard</li>
+                            <li><i class="fas fa-check"></i> Priority Support</li>
+                            <li><i class="fas fa-check"></i> Exclusive Games</li>
+                            <li><i class="fas fa-check"></i> Mentorship Access</li>
+                            <li><i class="fas fa-check"></i> Save 17%</li>
+                        </ul>
+                        <button class="btn btn-outline btn-block" onclick="showPage('register')">Go Premium</button>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Testimonials -->
+        <section class="testimonials">
+            <div class="container">
+                <div class="section-header">
+                    <span class="section-badge">Testimonials</span>
+                    <h2>What Our Students Say</h2>
+                </div>
+                <div class="testimonial-grid">
+                    <div class="testimonial-card">
+                        <div class="stars">⭐⭐⭐⭐⭐</div>
+                        <p>"I learned Python basics in just 5 days through their coding games. Amazing platform!"</p>
+                        <div class="testimonial-author">
+                            <div class="author-avatar">R</div>
+                            <div>
+                                <strong>Rahul S.</strong>
+                                <span>Computer Science Student</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="testimonial-card">
+                        <div class="stars">⭐⭐⭐⭐⭐</div>
+                        <p>"Accounting was always boring until I found EduPlay. The journal entry game is addictive!"</p>
+                        <div class="testimonial-author">
+                            <div class="author-avatar">P</div>
+                            <div>
+                                <strong>Priya M.</strong>
+                                <span>Commerce Student</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="testimonial-card">
+                        <div class="stars">⭐⭐⭐⭐⭐</div>
+                        <p>"My kids love learning math here. Best ₹99 I've ever spent on education!"</p>
+                        <div class="testimonial-author">
+                            <div class="author-avatar">A</div>
+                            <div>
+                                <strong>Amit K.</strong>
+                                <span>Parent</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Footer -->
+        <footer class="footer">
+            <div class="container">
+                <div class="footer-grid">
+                    <div class="footer-col">
+                        <h3>🎮 EduPlay</h3>
+                        <p>Making education fun through interactive gaming experiences.</p>
+                    </div>
+                    <div class="footer-col">
+                        <h4>Courses</h4>
+                        <a href="#">Coding</a>
+                        <a href="#">Accounting</a>
+                        <a href="#">Mathematics</a>
+                        <a href="#">Science</a>
+                    </div>
+                    <div class="footer-col">
+                        <h4>Company</h4>
+                        <a href="#">About Us</a>
+                        <a href="#">Contact</a>
+                        <a href="#">Privacy Policy</a>
+                        <a href="#">Terms of Service</a>
+                    </div>
+                    <div class="footer-col">
+                        <h4>Connect</h4>
+                        <div class="social-links">
+                            <a href="#"><i class="fab fa-facebook"></i></a>
+                            <a href="#"><i class="fab fa-twitter"></i></a>
+                            <a href="#"><i class="fab fa-instagram"></i></a>
+                            <a href="#"><i class="fab fa-youtube"></i></a>
+                        </div>
+                    </div>
+                </div>
+                <div class="footer-bottom">
+                    <p>&copy; 2024 EduPlay. All rights reserved.</p>
+                </div>
+            </div>
+        </footer>
+    </div>
+
+    <!-- ==================== REGISTER PAGE ==================== -->
+    <div id="page-register" class="page">
+        <div class="auth-container">
+            <div class="auth-card">
+                <div class="auth-header">
+                    <h2>🎮 Join EduPlay</h2>
+                    <p>Start learning through games today!</p>
+                </div>
+                <form id="registerForm" onsubmit="handleRegister(event)">
+                    <div class="form-group">
+                        <label>Full Name</label>
+                        <div class="input-icon">
+                            <i class="fas fa-user"></i>
+                            <input type="text" id="regName" placeholder="Enter your full name" required>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label>Email Address</label>
+                        <div class="input-icon">
+                            <i class="fas fa-envelope"></i>
+                            <input type="email" id="regEmail" placeholder="Enter your email" required>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label>Phone Number</label>
+                        <div class="input-icon">
+                            <i class="fas fa-phone"></i>
+                            <input type="tel" id="regPhone" placeholder="Enter your phone number" required>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label>Password</label>
+                        <div class="input-icon">
+                            <i class="fas fa-lock"></i>
+                            <input type="password" id="regPassword" placeholder="Create a password" required minlength="6">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label>Select Plan</label>
+                        <div class="plan-selector">
+                            <label class="plan-option">
+                                <input type="radio" name="plan" value="free" checked>
+                                <div class="plan-card-mini">
+                                    <span class="plan-name">Free Trial</span>
+                                    <span class="plan-price">₹0 / 3 days</span>
+                                </div>
+                            </label>
+                            <label class="plan-option">
+                                <input type="radio" name="plan" value="standard">
+                                <div class="plan-card-mini">
+                                    <span class="plan-name">Standard ⭐</span>
+                                    <span class="plan-price">₹99 / 15 days</span>
+                                </div>
+                            </label>
+                            <label class="plan-option">
+                                <input type="radio" name="plan" value="premium">
+                                <div class="plan-card-mini">
+                                    <span class="plan-name">Premium 👑</span>
+                                    <span class="plan-price">₹249 / 45 days</span>
+                                </div>
+                            </label>
+                        </div>
+                    </div>
+                    <button type="submit" class="btn btn-primary btn-block btn-lg">
+                        <i class="fas fa-user-plus"></i> Create Account
+                    </button>
+                </form>
+                <div class="auth-footer">
+                    Already have an account? <a href="#" onclick="showPage('login')">Login here</a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- ==================== LOGIN PAGE ==================== -->
+    <div id="page-login" class="page">
+        <div class="auth-container">
+            <div class="auth-card">
+                <div class="auth-header">
+                    <h2>🎮 Welcome Back!</h2>
+                    <p>Login to continue your learning journey</p>
+                </div>
+                <form id="loginForm" onsubmit="handleLogin(event)">
+                    <div class="form-group">
+                        <label>Email Address</label>
+                        <div class="input-icon">
+                            <i class="fas fa-envelope"></i>
+                            <input type="email" id="loginEmail" placeholder="Enter your email" required>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label>Password</label>
+                        <div class="input-icon">
+                            <i class="fas fa-lock"></i>
+                            <input type="password" id="loginPassword" placeholder="Enter your password" required>
+                        </div>
+                    </div>
+                    <button type="submit" class="btn btn-primary btn-block btn-lg">
+                        <i class="fas fa-sign-in-alt"></i> Login
+                    </button>
+                </form>
+                <div class="auth-footer">
+                    Don't have an account? <a href="#" onclick="showPage('register')">Sign up for ₹99</a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- ==================== PAYMENT PAGE ==================== -->
+    <div id="page-payment" class="page">
+        <div class="auth-container">
+            <div class="auth-card payment-card">
+                <div class="auth-header">
+                    <h2>💳 Complete Payment</h2>
+                    <p>Secure payment to activate your plan</p>
+                </div>
+                <div class="payment-summary">
+                    <div class="payment-plan-info">
+                        <h3 id="paymentPlanName">Standard Plan</h3>
+                        <div class="payment-amount" id="paymentAmount">₹99</div>
+                        <p id="paymentDuration">15 days access to all courses & games</p>
+                    </div>
+                </div>
+                <form id="paymentForm" onsubmit="handlePayment(event)">
+                    <div class="form-group">
+                        <label>Card Number</label>
+                        <div class="input-icon">
+                            <i class="fas fa-credit-card"></i>
+                            <input type="text" id="cardNumber" placeholder="1234 5678 9012 3456" maxlength="19" required>
+                        </div>
+                    </div>
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label>Expiry Date</label>
+                            <div class="input-icon">
+                                <i class="fas fa-calendar"></i>
+                                <input type="text" id="cardExpiry" placeholder="MM/YY" maxlength="5" required>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label>CVV</label>
+                            <div class="input-icon">
+                                <i class="fas fa-shield-alt"></i>
+                                <input type="text" id="cardCVV" placeholder="123" maxlength="3" required>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label>Cardholder Name</label>
+                        <div class="input-icon">
+                            <i class="fas fa-user"></i>
+                            <input type="text" id="cardName" placeholder="Name on card" required>
+                        </div>
+                    </div>
+                    <div class="payment-methods">
+                        <span>Also pay via:</span>
+                        <div class="method-icons">
+                            <button type="button" class="method-btn" onclick="simulateUPI()">📱 UPI</button>
+                            <button type="button" class="method-btn" onclick="simulateUPI()">🏦 Net Banking</button>
+                        </div>
+                    </div>
+                    <button type="submit" class="btn btn-primary btn-block btn-lg">
+                        <i class="fas fa-lock"></i> Pay Securely
+                    </button>
+                    <p class="security-note"><i class="fas fa-shield-alt"></i> 256-bit SSL Encrypted. Your data is safe.</p>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <!-- ==================== DASHBOARD PAGE ==================== -->
+    <div id="page-dashboard" class="page">
+        <div class="dashboard">
+            <div class="container">
+                <!-- Subscription Alert -->
+                <div id="subscriptionAlert" class="alert alert-warning" style="display:none;">
+                    <i class="fas fa-exclamation-triangle"></i>
+                    <span id="subAlertText"></span>
+                    <button class="btn btn-primary btn-sm" onclick="showPage('payment')">Renew Now</button>
+                </div>
+
+                <!-- Welcome Section -->
+                <div class="dashboard-header">
+                    <div class="welcome-section">
+                        <h1>Welcome back, <span id="dashName">User</span>! 👋</h1>
+                        <p>Continue your learning journey</p>
+                    </div>
+                    <div class="dash-stats-mini">
+                        <div class="mini-stat">
+                            <span class="mini-stat-value" id="dashCoins">0</span>
+                            <span class="mini-stat-label">🪙 Coins</span>
+                        </div>
+                        <div class="mini-stat">
+                            <span class="mini-stat-value" id="dashStreak">0</span>
+                            <span class="mini-stat-label">🔥 Day Streak</span>
+                        </div>
+                        <div class="mini-stat">
+                            <span class="mini-stat-value" id="dashLevel">1</span>
+                            <span class="mini-stat-label">⭐ Level</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Progress Overview -->
+                <div class="dashboard-grid">
+                    <div class="dash-card subscription-card">
+                        <h3><i class="fas fa-crown"></i> Subscription</h3>
+                        <div class="sub-info">
+                            <p>Plan: <strong id="dashPlan">Free</strong></p>
+                            <p>Expires: <strong id="dashExpiry">-</strong></p>
+                            <div class="sub-progress-bar">
+                                <div class="sub-progress" id="subProgress"></div>
+                            </div>
+                            <p class="sub-days" id="subDaysLeft">-</p>
+                        </div>
+                        <button class="btn btn-primary btn-sm btn-block" onclick="renewSubscription()">
+                            Renew / Upgrade
+                        </button>
+                    </div>
+
+                    <div class="dash-card">
+                        <h3><i class="fas fa-chart-line"></i> Learning Progress</h3>
+                        <div class="progress-list" id="progressList">
+                            <!-- Populated by JS -->
+                        </div>
+                    </div>
+
+                    <div class="dash-card">
+                        <h3><i class="fas fa-trophy"></i> Achievements</h3>
+                        <div class="achievements-grid" id="achievementsGrid">
+                            <!-- Populated by JS -->
+                        </div>
+                    </div>
+
+                    <div class="dash-card">
+                        <h3><i class="fas fa-history"></i> Recent Activity</h3>
+                        <div class="activity-list" id="activityList">
+                            <!-- Populated by JS -->
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Quick Play -->
+                <div class="quick-play">
+                    <h2>🎮 Quick Play</h2>
+                    <div class="quick-play-grid">
+                        <button class="quick-play-btn" onclick="launchGame('code-quiz')">
+                            <span class="qp-icon">💻</span>
+                            <span>Code Quiz</span>
+                        </button>
+                        <button class="quick-play-btn" onclick="launchGame('math-race')">
+                            <span class="qp-icon">🔢</span>
+                            <span>Math Race</span>
+                        </button>
+                        <button class="quick-play-btn" onclick="launchGame('word-scramble')">
+                            <span class="qp-icon">📝</span>
+                            <span>Word Scramble</span>
+                        </button>
+                        <button class="quick-play-btn" onclick="launchGame('account-match')">
+                            <span class="qp-icon">📊</span>
+                            <span>Account Match</span>
+                        </button>
+                        <button class="quick-play-btn" onclick="launchGame('science-trivia')">
+                            <span class="qp-icon">🔬</span>
+                            <span>Science Trivia</span>
+                        </button>
+                        <button class="quick-play-btn" onclick="launchGame('typing-speed')">
+                            <span class="qp-icon">⌨️</span>
+                            <span>Typing Speed</span>
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- ==================== COURSES PAGE ==================== -->
+    <div id="page-courses" class="page">
+        <div class="container">
+            <div class="page-header">
+                <h1>📚 All Courses</h1>
+                <p>Master any subject through interactive games</p>
+                <div class="course-filters">
+                    <button class="filter-btn active" onclick="filterCourses('all', this)">All</button>
+                    <button class="filter-btn" onclick="filterCourses('coding', this)">💻 Coding</button>
+                    <button class="filter-btn" onclick="filterCourses('accounting', this)">📊 Accounting</button>
+                    <button class="filter-btn" onclick="filterCourses('math', this)">📐 Math</button>
+                    <button class="filter-btn" onclick="filterCourses('science', this)">🔬 Science</button>
+                    <button class="filter-btn" onclick="filterCourses('english', this)">📝 English</button>
+                    <button class="filter-btn" onclick="filterCourses('design', this)">🎨 Design</button>
+                </div>
+            </div>
+            <div class="courses-grid" id="coursesGrid">
+                <!-- Populated by JS -->
+            </div>
+        </div>
+    </div>
+
+    <!-- ==================== COURSE DETAIL PAGE ==================== -->
+    <div id="page-course-detail" class="page">
+        <div class="container">
+            <div class="course-detail" id="courseDetail">
+                <!-- Populated by JS -->
+            </div>
+        </div>
+    </div>
+
+    <!-- ==================== GAMES HUB PAGE ==================== -->
+    <div id="page-games" class="page">
+        <div class="container">
+            <div class="page-header">
+                <h1>🎮 Game Center</h1>
+                <p>Choose a game and start learning!</p>
+            </div>
+            <div class="games-grid" id="gamesGrid">
+                <!-- Populated by JS -->
+            </div>
+        </div>
+    </div>
+
+    <!-- ==================== GAME PLAY PAGE ==================== -->
+    <div id="page-gameplay" class="page">
+        <div class="game-container">
+            <div class="game-header">
+                <button class="btn btn-sm btn-outline" onclick="exitGame()">
+                    <i class="fas fa-arrow-left"></i> Exit
+                </button>
+                <div class="game-info">
+                    <h3 id="gameTitle">Game</h3>
+                    <div class="game-meta">
+                        <span class="game-score">Score: <strong id="gameScore">0</strong></span>
+                        <span class="game-timer">⏱️ <strong id="gameTimer">60</strong>s</span>
+                        <span class="game-lives">❤️ <strong id="gameLives">3</strong></span>
+                    </div>
+                </div>
+            </div>
+            <div class="game-area" id="gameArea">
+                <!-- Game content loaded here -->
+            </div>
+        </div>
+    </div>
+
+    <!-- ==================== LEADERBOARD PAGE ==================== -->
+    <div id="page-leaderboard" class="page">
+        <div class="container">
+            <div class="page-header">
+                <h1>🏆 Leaderboard</h1>
+                <p>Top players this week</p>
+            </div>
+            <div class="leaderboard-tabs">
+                <button class="lb-tab active" onclick="switchLeaderboard('overall', this)">Overall</button>
+                <button class="lb-tab" onclick="switchLeaderboard('coding', this)">Coding</button>
+                <button class="lb-tab" onclick="switchLeaderboard('accounting', this)">Accounting</button>
+                <button class="lb-tab" onclick="switchLeaderboard('math', this)">Math</button>
+            </div>
+            <div class="leaderboard-table" id="leaderboardTable">
+                <!-- Populated by JS -->
+            </div>
+        </div>
+    </div>
+
+    <!-- ==================== NOTIFICATION TOAST ==================== -->
+    <div id="toast" class="toast">
+        <div class="toast-content">
+            <span class="toast-icon" id="toastIcon">✅</span>
+            <span class="toast-message" id="toastMessage">Success!</span>
+        </div>
+    </div>
+
+    <!-- ==================== MODAL ==================== -->
+    <div id="modal" class="modal">
+        <div class="modal-content">
+            <button class="modal-close" onclick="closeModal()">&times;</button>
+            <div id="modalBody"></div>
+        </div>
+    </div>
+
+    <script src="js/app.js"></script>
+</body>
+</html>
